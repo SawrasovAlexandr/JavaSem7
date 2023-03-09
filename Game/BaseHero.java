@@ -8,21 +8,19 @@ public abstract class BaseHero {
     private String name;
     private double hp;
     private double maxHp;
-    private int mp;
-    private int maxMp;
-    private double def;
-    private int dodge;
-    private double dmg;
+    protected double mp;
+    protected double def;
+    protected int dodge;
+    protected double dmg;
     Random rand = new Random();
     
 
-    BaseHero(String name, double hp, int mp, double def, int dodge, double dmg){
+    BaseHero(String name, double hp, double mp, double def, int dodge, double dmg){
         this.id = ++num;
         this.name = name;
         this.hp = hp;
         this.maxHp = hp;
         this.mp = mp;
-        this.maxMp = mp;
         this.def = def;
         this.dodge = dodge;
         this.dmg = dmg;
@@ -37,14 +35,22 @@ public abstract class BaseHero {
         this.hp -= dmg; 
     }
 
-    protected void healing(int hlg){
+    protected void healing(double hlg){
         if (isAlive()) {
             if (this.hp + hlg >= this.maxHp) this.hp = this.maxHp;
             else this.hp += hlg;
         }
     }
 
-    public int getId() {
+    protected boolean cast(double mana){
+        if (this.mp >= mana) {
+            this.mp -= mana;
+            return true;
+        }
+        return false;
+    }
+
+    protected int getId() {
         return this.id;
     }
 
@@ -53,10 +59,10 @@ public abstract class BaseHero {
         return true;
     }
    
-    protected void toAttack(BaseHero target){
-        if (this.getId() != target.getId() && target.isAlive()) {
+    public void toAttack(BaseHero target){
+        if (this.getId() != target.getId() && target.isAlive()){
             if (target.dodge <= rand.nextInt(100)) {
-                target.damage(rand.nextInt((int)this.dmg -3, (int)this.dmg + 4) * (1 - target.def));
+                target.damage(rand.nextInt((int)this.dmg - 3, (int)this.dmg + 4) * (1 - target.def));
             } else System.out.println("Мимо!!");
         }
     }
