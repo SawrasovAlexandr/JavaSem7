@@ -6,8 +6,8 @@ public abstract class BaseHero {
     private static int num;
     private int id;
     private String name;
-    private double hp;
-    private double maxHp;
+    protected double hp;
+    protected double maxHp;
     protected double mp;
     protected double def;
     protected int dodge;
@@ -66,4 +66,41 @@ public abstract class BaseHero {
             } else System.out.println("Мимо!!");
         }
     }
+
+    public static boolean isPartyAlive(BaseHero[] heroes) {
+        for (BaseHero hero : heroes) {
+            if (hero.isAlive()) return true;
+        }
+        return false;
+    }
+
+    public static boolean isAllPartyAlive(BaseHero[] heroes) {
+        for (BaseHero hero : heroes) {
+            if (!hero.isAlive()) return false;
+        }
+        return true;
+    }
+
+    public static int getMinHpIndex(BaseHero[] heroes) {
+        int min = 0;
+        for (int i = 1; i < heroes.length; i++) {
+            if (heroes[i].isAlive() && heroes[i].hp < heroes[min].hp) min = i;
+        }
+        return min;
+    }
+
+    public static int getMaxMpIndex(BaseHero[] heroes) {
+        int max = 0;
+        for (int i = 1; i < heroes.length; i++) {
+            if (heroes[i].isAlive() && heroes[i].mp > heroes[max].mp) max = i;
+        }
+        return max;
+    }
+
+    public static boolean isGetDmg(BaseHero hero) {
+        if (hero.hp < hero.maxHp) return true;
+        return false;
+    }
+
+    public abstract void fight(BaseHero[] enemies, BaseHero[] friends);
 }

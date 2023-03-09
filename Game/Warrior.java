@@ -24,4 +24,11 @@ public class Warrior extends BaseHero{
         this.damage(mp);
         this.cast(mp);
     }
+
+    @Override
+    public void fight(BaseHero[] enemies, BaseHero[] friends) {
+        if (this.mp <= this.dmg && this.hp >= this.maxHp) this.toGiveHp(friends);
+        else if (this.mp >= 2 * this.dmg) this.doubleStrike(enemies[getMinHpIndex(enemies)]);
+        else this.toAttack(enemies[getMinHpIndex(enemies)]);
+    }
 }

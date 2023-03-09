@@ -22,4 +22,13 @@ public class Priest extends BaseHero{
             else target.mp -= 2 * this.dmg;
         }
     }
+
+    @Override
+    public void fight(BaseHero[] enemies, BaseHero[] friends) {
+        if (this.mp >= this.dmg && isGetDmg(friends[getMinHpIndex(friends)])) this.toHeal(friends[getMinHpIndex(friends)]);
+        else if (this.mp >= 2 * this.dmg && enemies[getMaxMpIndex(enemies)].mp != 0){
+            this.burnMp(enemies[getMaxMpIndex(enemies)]);
+        } 
+        else this.toAttack(enemies[getMinHpIndex(enemies)]);
+    }
 }

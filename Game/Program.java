@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.Scanner;
+
 /**
  * Создать класс Player с полями id (long), name (String), damage (double) healthPoint (hp) (double)
  *  У класса должен быть конструктор, который принимает только name. Идентификатор присваивается автоматически
@@ -12,12 +14,13 @@ package Game;
  */
 public class Program {
     public static void main(String[] args) {
-        BaseHero war1 = new Warrior("Паша");
-        BaseHero war2 = new Warrior("Сережа");
-        System.out.println(war1);
-        System.out.println(war2);
-        war1.toAttack(war2);
-        System.out.println(war1);
-        System.out.println(war2);
+        BaseHero[] party1 = {new Magician(), new Warrior(), new Priest(), new Rogue()};
+        BaseHero[] party2 = {new Magician(), new Warrior(), new Priest(), new Rogue()};
+        Scanner sc = new Scanner(System.in);
+        while (isAliveParty(party1) && isAliveParty(party2)) {
+            
+        }
     }
+
+   
 }
