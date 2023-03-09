@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class BaseHero {
     private static int num;
     private int id;
-    private String name;
+    protected String name;
     protected double hp;
     protected double maxHp;
     protected double mp;
@@ -28,7 +28,7 @@ public abstract class BaseHero {
 
     @Override
     public String toString() {
-        return String.format("%s-%d, hp: %.0f, mp: %d", this.name, this.id, this.hp, this.mp);
+        return String.format("%s-%d, hp: %.0f, mp: %.0f", this.name, this.id, this.hp, this.mp);
     }
 
     protected void damage(double dmg){
@@ -83,7 +83,7 @@ public abstract class BaseHero {
 
     public static int getMinHpIndex(BaseHero[] heroes) {
         int min = 0;
-        for (int i = 1; i < heroes.length; i++) {
+        for (int i = 0; i < heroes.length; i++) {
             if (heroes[i].isAlive() && heroes[i].hp < heroes[min].hp) min = i;
         }
         return min;

@@ -30,8 +30,15 @@ public class Magician extends BaseHero{
 
     @Override
     public void fight(BaseHero[] enemies, BaseHero[] friends) {
-        if (this.mp >= 4 * this.dmg && isAllPartyAlive(enemies)) this.inferno(enemies);
-        else if (this.mp >= 2 * this.dmg) this.fireball(enemies[getMinHpIndex(enemies)]);
-        else this.toAttack(enemies[getMinHpIndex(enemies)]);
+        if (this.mp >= 4 * this.dmg && isAllPartyAlive(enemies)){
+             this.inferno(enemies);
+             System.out.println(this.toString() + " inferno");
+        } else if (this.mp >= 2 * this.dmg){
+             this.fireball(enemies[getMinHpIndex(enemies)]);
+             System.out.println(this.toString() + " fireball " + enemies[getMinHpIndex(enemies)].name);
+        } else{
+             this.toAttack(enemies[getMinHpIndex(enemies)]);
+             System.out.println(this.toString() + " attack " + enemies[getMinHpIndex(enemies)].name);
+        }
     }
 }

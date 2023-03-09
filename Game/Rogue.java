@@ -28,8 +28,15 @@ public class Rogue extends BaseHero{
 
     @Override
     public void fight(BaseHero[] enemies, BaseHero[] friends) {
-        if (this.mp >= this.dmg && enemies[getMinHpIndex(enemies)].hp <= this.dmg) this.sneakyStrike(enemies[getMinHpIndex(enemies)]);
-        else if (this.mp >= this.dmg / 4) this.exactStrike(enemies[getMinHpIndex(enemies)]);
-        else this.toAttack(enemies[getMinHpIndex(enemies)]);
+        if (this.mp >= this.dmg && enemies[getMinHpIndex(enemies)].hp <= this.dmg){
+            this.sneakyStrike(enemies[getMinHpIndex(enemies)]);
+            System.out.println(this.toString() + " sneakyStrike " + enemies[getMinHpIndex(enemies)].name);
+        }else if (this.mp >= this.dmg / 4){
+            this.exactStrike(enemies[getMinHpIndex(enemies)]);
+            System.out.println(this.toString() + " exactStrike " + enemies[getMinHpIndex(enemies)].name);
+        }else{
+            this.toAttack(enemies[getMinHpIndex(enemies)]);
+            System.out.println(this.toString() + " attack " + enemies[getMinHpIndex(enemies)].name);
+        } 
     }
 }
